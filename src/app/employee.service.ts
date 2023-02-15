@@ -27,4 +27,13 @@ export class EmployeeService {
         .set('Authorization', `Bearer ${bearerToken}`)
     }).subscribe();
   }
+
+  editEmployee(e: Employee) {
+    let bearerToken = sessionStorage.getItem("bearerToken");
+    return this.http.put<Employee>(`/api/edit-employee/${e.id}`, JSON.stringify(e), {
+      headers: new HttpHeaders()
+        .set('Content-Type', 'application/json')
+        .set('Authorization', `Bearer ${bearerToken}`)
+    });
+  }
 }
